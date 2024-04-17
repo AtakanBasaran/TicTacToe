@@ -65,5 +65,9 @@ class TicTacToeGame: ObservableObject {
         }
     }
     
-    
+    func resetGame() {
+        board = Array(repeating: Array(repeating: nil, count: 3), count: 3)
+        currentPlayer = .X
+        winner = nil
+    }
 }

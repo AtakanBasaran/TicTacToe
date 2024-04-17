@@ -38,7 +38,26 @@ struct TicTacToeView: View {
                 .font(.title3)
                 .padding()
                 .foregroundStyle(Color.white)
-      
+                
+            
+            
+            Button(action: {
+                game.resetGame()
+            }, label: {
+                Text("Play Again")
+                    .foregroundStyle(.white)
+                    .font(.title3)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .foregroundStyle(.red)
+                            .frame(width: 110, height: 35)
+                    )
+                
+            })
+            .disabled(game.winner != nil ? false : true)
+            .opacity(game.winner != nil ? 1 : 0)
+            
+            
         }
         
     }
