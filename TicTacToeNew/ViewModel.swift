@@ -62,6 +62,7 @@ class ViewModel: ObservableObject {
             winner = board[0][2]
             return
         }
+        
         // Check for draw
         if board.flatMap({ $0 }).compactMap({ $0 }).count == 9 && winner != .X && winner != .O && winner == nil {
             winner = .Draw // if there is no winner, it's a draw
