@@ -12,6 +12,7 @@
 		BB03E1DC2BCF278700FC32FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB03E1DB2BCF278700FC32FC /* Assets.xcassets */; };
 		BB03E1DF2BCF278700FC32FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB03E1DE2BCF278700FC32FC /* Preview Assets.xcassets */; };
 		BB03E1E62BCFFDD400FC32FC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB03E1E52BCFFDD300FC32FC /* ViewModel.swift */; };
+		BB17B9262BD45ED8003BE972 /* TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17B9252BD45ED8003BE972 /* TextResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		BB03E1DB2BCF278700FC32FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB03E1DE2BCF278700FC32FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BB03E1E52BCFFDD300FC32FC /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		BB17B9252BD45ED8003BE972 /* TextResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				BB03E1D72BCF278500FC32FC /* TicTacToeNewApp.swift */,
 				BB03E1E52BCFFDD300FC32FC /* ViewModel.swift */,
 				BB03E1D92BCF278500FC32FC /* ContentView.swift */,
+				BB17B9252BD45ED8003BE972 /* TextResult.swift */,
 				BB03E1DB2BCF278700FC32FC /* Assets.xcassets */,
 				BB03E1DD2BCF278700FC32FC /* Preview Content */,
 			);
@@ -143,6 +146,7 @@
 				BB03E1DA2BCF278500FC32FC /* ContentView.swift in Sources */,
 				BB03E1E62BCFFDD400FC32FC /* ViewModel.swift in Sources */,
 				BB03E1D82BCF278500FC32FC /* TicTacToeNewApp.swift in Sources */,
+				BB17B9262BD45ED8003BE972 /* TextResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

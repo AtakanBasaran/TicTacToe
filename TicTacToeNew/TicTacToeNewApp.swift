@@ -9,10 +9,15 @@ import SwiftUI
 
 @main
 struct TicTacToeNewApp: App {
+    
+    @StateObject var viewVM = ViewModel()
+    
     var body: some Scene {
         WindowGroup {
             TicTacToeView()
                 .preferredColorScheme(.dark)
+                .environmentObject(viewVM)
+            
         }
     }
 }

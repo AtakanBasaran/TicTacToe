@@ -13,21 +13,24 @@ enum Player {
     case Draw
     
     var symbol: String {
+        
         switch self {
+            
         case .X: return "X"
         case .O: return "O"
-            
         case .Draw: return ""
+            
         }
     }
 }
 
 
-class TicTacToeGame: ObservableObject {
+class ViewModel: ObservableObject {
     
     @Published private(set) var board: [[Player?]] = Array(repeating: Array(repeating: nil, count: 3), count: 3)
     @Published private(set) var currentPlayer: Player = .X
     @Published private(set) var winner: Player? = nil
+    @Published var turnMessage: Text?
     
     
     func makeMove(row: Int, col: Int) {
@@ -60,7 +63,7 @@ class TicTacToeGame: ObservableObject {
             return
         }
         // Check for draw
-        if board.flatMap({ $0 }).compactMap({ $0 }).count == 9 && winner == nil {
+        if board.flatMap({ $0 }).compactMap({ $0 }).count == 9 && winner != .X && winner != .O && winner == nil {
             winner = .Draw // if there is no winner, it's a draw
         }
     }
@@ -70,4 +73,24 @@ class TicTacToeGame: ObservableObject {
         currentPlayer = .X
         winner = nil
     }
+    
+    func winnerColor() -> Color {
+        
+        switch winner {
+            
+        case .Draw:
+            return .green
+        case .O:
+            return .blue
+            
+        case .X:
+            return .red
+            
+        case .none:
+            return .gray
+        }
+    }
+    
+    
+    
 }
