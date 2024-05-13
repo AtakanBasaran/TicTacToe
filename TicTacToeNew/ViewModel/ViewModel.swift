@@ -57,10 +57,7 @@ class ViewModel: ObservableObject {
                 if moves.count == 3 {
                     if let firstMove = moves.first {
                         board[firstMove.row][firstMove.col] = currentPlayer == .X ? .XwithOpacity : .OwithOpacity
-                        print("fainted")
-                        print(currentPlayer)
-                        print(moves)
-                        print(moves.count)
+  
                     } else {
                         print("not fainted")
                     }

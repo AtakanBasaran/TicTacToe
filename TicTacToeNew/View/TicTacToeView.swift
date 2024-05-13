@@ -41,9 +41,21 @@ struct TicTacToeView: View {
                     })
                     
                     Spacer()
+                    
+                    Text(vm.alternativeMode ? "Alternative" : "Classic")
+                        .foregroundStyle(.cyan)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(width: 120, height: 35)
+                                .foregroundStyle(.white)
+                                
+                        )
+                        .padding(.trailing, 25)
+                    
+                    Spacer()
                 }
                 .padding(.top, 15)
-                .padding(.leading, 25)
+                .padding(.horizontal, 25)
                 
                 Spacer()
                 
@@ -86,7 +98,7 @@ struct TicTacToeView: View {
                         .font(.title3)
                         .background(
                             RoundedRectangle(cornerRadius: 15)
-                                .foregroundStyle(.green)
+                                .foregroundStyle(vm.winnerColor())
                                 .frame(width: 130, height: 35)
                         )
                     

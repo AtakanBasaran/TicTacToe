@@ -73,6 +73,7 @@ struct TextResult: View {
             Text("It's a draw!")
                 .font(.system(size: 20))
                 .foregroundStyle(.white)
+                .bold()
         }
         
         private var notFinished: some View {
