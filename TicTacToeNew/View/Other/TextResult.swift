@@ -24,11 +24,11 @@ struct TextResult: View {
         
         if let type {
             
-            if type == .O  {
+            if type == .O || type == .OwithOpacity {
                 
                 viewO
                 
-            } else if type == .X {
+            } else if type == .X || type == .XwithOpacity {
                 viewX
                 
             } else if type == .Draw {

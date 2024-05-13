@@ -33,9 +33,10 @@ struct WelcomeView: View {
                     VStack(spacing: 50) {
                         
                         Text("Choose your game mode")
-                            .padding(.trailing, 80)
                             .foregroundStyle(.white)
                             .font(.system(size: 22))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 20)
                             
                         
                         VStack(spacing: 20) {

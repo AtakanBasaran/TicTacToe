@@ -52,18 +52,30 @@ class ViewModel: ObservableObject {
         
         if alternativeMode {
             
-            if let moves = playerMoves[currentPlayer], moves.count == 3 {
-                if let firstMove = moves.first {
-                    board[firstMove.row][firstMove.col] = currentPlayer == .X ? .XwithOpacity : .OwithOpacity
-                }
-            }
-            
-            if let moves = playerMoves[currentPlayer], moves.count == 4 {
+            if var moves = playerMoves[currentPlayer] {
                 
-                if let firstMove = moves.first {
+                if moves.count == 3 {
+                    if let firstMove = moves.first {
+                        board[firstMove.row][firstMove.col] = currentPlayer == .X ? .XwithOpacity : .OwithOpacity
+                        print("fainted")
+                        print(currentPlayer)
+                        print(moves)
+                        print(moves.count)
+                    } else {
+                        print("not fainted")
+                    }
                     
-                    board[firstMove.row][firstMove.col] = nil
-                    playerMoves[currentPlayer]?.removeFirst()
+                } else if moves.count == 4 {
+                    if let firstMove = moves.first {
+                        moves.removeFirst()
+                        playerMoves[currentPlayer] = moves
+                        board[firstMove.row][firstMove.col] = nil
+                        
+                        if let firstMove2 = moves.first {
+                            board[firstMove2.row][firstMove2.col] = currentPlayer == .X ? .XwithOpacity : .OwithOpacity
+                        }
+
+                    }
                 }
             }
         }
@@ -73,80 +85,78 @@ class ViewModel: ObservableObject {
         checkForWinner()
     }
     
-    func removeFirst(for player: Player) {
-        
-        for i in 0..<3 {
-            
-            for j in 0..<3 {
-                if board[i][j] == player {
-                    board[i][j] = nil
-                    return
-                }
-            }
-        }
-    }
-    
-    
-    
-    
+
     private func checkForWinner() {
         
         // Check rows, columns, and diagonals
         for i in 0..<3 {
-            if board[i][0] != nil && board[i][0] == board[i][1] && board[i][0] == board[i][2] {
-                winner = board[i][0]
+            
+            func symbolsAreEqual(_ symbol1: Player?, _ symbol2: Player?) -> Bool {
+                // Consider regular symbols and symbols with opacity as equal
+                return symbol1 == symbol2 ||
+                (symbol1 == .X && symbol2 == .XwithOpacity) ||
+                (symbol1 == .XwithOpacity && symbol2 == .X) ||
+                (symbol1 == .O && symbol2 == .OwithOpacity) ||
+                (symbol1 == .OwithOpacity && symbol2 == .O)
+            }
+            
+            // Check rows, columns, and diagonals
+            for i in 0..<3 {
+                if symbolsAreEqual(board[i][0], board[i][1]) && symbolsAreEqual(board[i][0], board[i][2]) {
+                    winner = board[i][0]
+                    return
+                }
+                if symbolsAreEqual(board[0][i], board[1][i]) && symbolsAreEqual(board[0][i], board[2][i]) {
+                    winner = board[0][i]
+                    return
+                }
+            }
+            if symbolsAreEqual(board[0][0], board[1][1]) && symbolsAreEqual(board[0][0], board[2][2]) {
+                winner = board[0][0]
                 return
             }
-            if board[0][i] != nil && board[0][i] == board[1][i] && board[0][i] == board[2][i] {
-                winner = board[0][i]
+            if symbolsAreEqual(board[0][2], board[1][1]) && symbolsAreEqual(board[0][2], board[2][0]) {
+                winner = board[0][2]
                 return
             }
+            
+            // Check for draw
+            if board.flatMap({ $0 }).compactMap({ $0 }).count == 9 && winner != .X && winner != .O && winner == nil {
+                winner = .Draw // if there is no winner, it's a draw
+            }
         }
-        if board[0][0] != nil && board[0][0] == board[1][1] && board[0][0] == board[2][2] {
-            winner = board[0][0]
-            return
-        }
-        if board[0][2] != nil && board[0][2] == board[1][1] && board[0][2] == board[2][0] {
-            winner = board[0][2]
-            return
+    }
+        
+        func resetGame() {
+            board = Array(repeating: Array(repeating: nil, count: 3), count: 3)
+            playerMoves = [.X: [], .O:[] ]
+            currentPlayer = .X
+            winner = nil
         }
         
-        // Check for draw
-        if board.flatMap({ $0 }).compactMap({ $0 }).count == 9 && winner != .X && winner != .O && winner == nil {
-            winner = .Draw // if there is no winner, it's a draw
+        func winnerColor() -> Color {
+            
+            switch winner {
+                
+            case .Draw:
+                return .green
+            case .O:
+                return .blue
+                
+            case .X:
+                return .red
+                
+            case .XwithOpacity:
+                return .red
+                
+            case .OwithOpacity:
+                return .blue
+                
+            case .none:
+                return .gray
+            }
         }
-    }
-    
-    func resetGame() {
-        board = Array(repeating: Array(repeating: nil, count: 3), count: 3)
-        playerMoves = [.X: [], .O:[] ]
-        currentPlayer = .X
-        winner = nil
-    }
-    
-    func winnerColor() -> Color {
         
-        switch winner {
-            
-        case .Draw:
-            return .green
-        case .O:
-            return .blue
-            
-        case .X:
-            return .red
-            
-        case .XwithOpacity:
-            return .red
-            
-        case .OwithOpacity:
-            return .blue
-            
-        case .none:
-            return .gray
-        }
-    }
-    
     
     
 }

@@ -24,8 +24,9 @@ struct TicTacToeView: View {
                 HStack {
                     
                     Button(action: {
-                        vm.resetGame()
                         vm.navigate = false
+                        vm.resetGame()
+                        
                     }, label: {
                         ZStack {
                             Circle()
