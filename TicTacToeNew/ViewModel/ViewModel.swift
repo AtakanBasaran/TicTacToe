@@ -11,13 +11,15 @@ enum Player {
     case X
     case O
     case Draw
+    case XwithOpacity
+    case OwithOpacity
     
     var symbol: String {
         
         switch self {
             
-        case .X: return "X"
-        case .O: return "O"
+        case .X, .XwithOpacity: return "X"
+        case .O, .OwithOpacity: return "O"
         case .Draw: return ""
             
         }
@@ -49,6 +51,12 @@ class ViewModel: ObservableObject {
         
         
         if alternativeMode {
+            
+            if let moves = playerMoves[currentPlayer], moves.count == 3 {
+                if let firstMove = moves.first {
+                    board[firstMove.row][firstMove.col] = currentPlayer == .X ? .XwithOpacity : .OwithOpacity
+                }
+            }
             
             if let moves = playerMoves[currentPlayer], moves.count == 4 {
                 
@@ -127,6 +135,12 @@ class ViewModel: ObservableObject {
             
         case .X:
             return .red
+            
+        case .XwithOpacity:
+            return .red
+            
+        case .OwithOpacity:
+            return .blue
             
         case .none:
             return .gray

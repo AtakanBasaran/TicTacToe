@@ -16,7 +16,7 @@ struct TicTacToeView: View {
         
         ZStack {
             
-            Color.purple
+            Color.cyan
                 .ignoresSafeArea()
             
             VStack {
@@ -30,17 +30,19 @@ struct TicTacToeView: View {
                         ZStack {
                             Circle()
                                 .foregroundStyle(.white)
-                                .frame(width: 30)
+                                .frame(width: 40)
                             
                             Image(systemName: "arrowshape.left")
+                                .font(.system(size: 18))
+                                .foregroundStyle(.cyan)
                                 
                         }
                     })
                     
                     Spacer()
                 }
-                .padding(.top, 10)
-                .padding(.leading, 20)
+                .padding(.top, 15)
+                .padding(.leading, 25)
                 
                 Spacer()
                 
@@ -50,12 +52,17 @@ struct TicTacToeView: View {
                             Button(action: {
                                 vm.makeMove(row: row, col: col)
                             }, label: {
-                                Text(vm.board[row][col]?.symbol ?? "")
+                                let symbol = vm.board[row][col]?.symbol ?? ""
+                                let opacity = vm.board[row][col] == .XwithOpacity || vm.board[row][col] == .OwithOpacity ? 0.4 : 1
+                                
+                                Text(symbol)
                                     .font(.system(size: 45))
                                     .bold()
                                     .frame(width: 90, height: 90)
-                                    .foregroundStyle(vm.board[row][col] == .X ? .red : .blue)
+                                    .foregroundStyle(vm.board[row][col] == .X || vm.board[row][col] == .XwithOpacity ? .red : .blue)
+                                    .opacity(opacity)
                                     .background(Color.black.opacity(0.5))
+                                    
                             })
                         }
                     }

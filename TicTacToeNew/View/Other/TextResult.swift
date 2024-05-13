@@ -43,7 +43,7 @@ struct TextResult: View {
         private var viewO: some View {
             
             Text("O")
-                .font(.title3)
+                .font(.system(size: 20))
                 .foregroundStyle(.blue)
                 .bold()
             
@@ -51,13 +51,13 @@ struct TextResult: View {
             
             + Text("wins!")
                 .foregroundStyle(.white)
-                .font(.title3)
+                .font(.system(size: 20))
         }
         
         private var viewX: some View {
             
             Text("X")
-                .font(.title3)
+                .font(.system(size: 20))
                 .foregroundStyle(.red)
                 .bold()
             
@@ -65,24 +65,24 @@ struct TextResult: View {
             
             + Text("wins!")
                 .foregroundStyle(.white)
-                .font(.title3)
+                .font(.system(size: 20))
         }
         
         private  var viewDraw: some View {
             
             Text("It's a draw!")
-                .font(.title3)
+                .font(.system(size: 20))
                 .foregroundStyle(.white)
         }
         
         private var notFinished: some View {
             
             Text("\(vm.currentPlayer.symbol)")
-                .font(.title3)
+                .font(.system(size: 20))
                 .foregroundStyle(vm.currentPlayer == .X ? .red : .blue)
             
             + Text("'s turn")
-                .font(.title3)
+                .font(.system(size: 20))
                 .foregroundStyle(.white)
             
         }

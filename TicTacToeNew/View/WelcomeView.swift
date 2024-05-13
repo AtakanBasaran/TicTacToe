@@ -17,7 +17,7 @@ struct WelcomeView: View {
             
             ZStack {
                 
-                Color(.purple)
+                Color(.cyan)
                     .ignoresSafeArea()
                 
                 VStack {
