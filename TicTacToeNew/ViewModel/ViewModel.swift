@@ -31,14 +31,54 @@ class ViewModel: ObservableObject {
     @Published private(set) var currentPlayer: Player = .X
     @Published private(set) var winner: Player? = nil
     @Published var turnMessage: Text?
+    @Published var alternativeMode = false
+    @Published var navigate = false
+    
+    private var moveCountX = 0
+    private var moveCountO = 0
+    private var playerMoves: [Player : [(row: Int, col: Int)] ] = [.X: [], .O:[] ]
+    
     
     
     func makeMove(row: Int, col: Int) {
+        
         guard board[row][col] == nil && winner == nil else { return }
+        
+        playerMoves[currentPlayer]?.append((row, col))
         board[row][col] = currentPlayer
-        checkForWinner()
+        
+        
+        if alternativeMode {
+            
+            if let moves = playerMoves[currentPlayer], moves.count == 4 {
+                
+                if let firstMove = moves.first {
+                    
+                    board[firstMove.row][firstMove.col] = nil
+                    playerMoves[currentPlayer]?.removeFirst()
+                }
+            }
+        }
+
         currentPlayer = currentPlayer == .X ? .O : .X
+        
+        checkForWinner()
     }
+    
+    func removeFirst(for player: Player) {
+        
+        for i in 0..<3 {
+            
+            for j in 0..<3 {
+                if board[i][j] == player {
+                    board[i][j] = nil
+                    return
+                }
+            }
+        }
+    }
+    
+    
     
     
     private func checkForWinner() {
@@ -71,6 +111,7 @@ class ViewModel: ObservableObject {
     
     func resetGame() {
         board = Array(repeating: Array(repeating: nil, count: 3), count: 3)
+        playerMoves = [.X: [], .O:[] ]
         currentPlayer = .X
         winner = nil
     }

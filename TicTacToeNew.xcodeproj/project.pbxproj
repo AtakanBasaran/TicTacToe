@@ -8,21 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		BB03E1D82BCF278500FC32FC /* TicTacToeNewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB03E1D72BCF278500FC32FC /* TicTacToeNewApp.swift */; };
-		BB03E1DA2BCF278500FC32FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB03E1D92BCF278500FC32FC /* ContentView.swift */; };
+		BB03E1DA2BCF278500FC32FC /* TicTacToeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB03E1D92BCF278500FC32FC /* TicTacToeView.swift */; };
 		BB03E1DC2BCF278700FC32FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB03E1DB2BCF278700FC32FC /* Assets.xcassets */; };
 		BB03E1DF2BCF278700FC32FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB03E1DE2BCF278700FC32FC /* Preview Assets.xcassets */; };
 		BB03E1E62BCFFDD400FC32FC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB03E1E52BCFFDD300FC32FC /* ViewModel.swift */; };
 		BB17B9262BD45ED8003BE972 /* TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17B9252BD45ED8003BE972 /* TextResult.swift */; };
+		BB24BC962BF0DF5F006C3998 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24BC952BF0DF5F006C3998 /* WelcomeView.swift */; };
+		BB24BC992BF0EE6B006C3998 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24BC982BF0EE6B006C3998 /* RoundedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BB03E1D42BCF278500FC32FC /* TicTacToeNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToeNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB03E1D72BCF278500FC32FC /* TicTacToeNewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeNewApp.swift; sourceTree = "<group>"; };
-		BB03E1D92BCF278500FC32FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BB03E1D92BCF278500FC32FC /* TicTacToeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeView.swift; sourceTree = "<group>"; };
 		BB03E1DB2BCF278700FC32FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB03E1DE2BCF278700FC32FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BB03E1E52BCFFDD300FC32FC /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BB17B9252BD45ED8003BE972 /* TextResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextResult.swift; sourceTree = "<group>"; };
+		BB24BC952BF0DF5F006C3998 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		BB24BC982BF0EE6B006C3998 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				BB03E1D72BCF278500FC32FC /* TicTacToeNewApp.swift */,
-				BB03E1E52BCFFDD300FC32FC /* ViewModel.swift */,
-				BB03E1D92BCF278500FC32FC /* ContentView.swift */,
-				BB17B9252BD45ED8003BE972 /* TextResult.swift */,
+				BB24BC932BF01F79006C3998 /* ViewModel */,
+				BB24BC942BF01F95006C3998 /* View */,
 				BB03E1DB2BCF278700FC32FC /* Assets.xcassets */,
 				BB03E1DD2BCF278700FC32FC /* Preview Content */,
 			);
@@ -71,6 +74,33 @@
 				BB03E1DE2BCF278700FC32FC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BB24BC932BF01F79006C3998 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BB03E1E52BCFFDD300FC32FC /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BB24BC942BF01F95006C3998 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB24BC952BF0DF5F006C3998 /* WelcomeView.swift */,
+				BB03E1D92BCF278500FC32FC /* TicTacToeView.swift */,
+				BB24BC972BF0EE5A006C3998 /* Other */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB24BC972BF0EE5A006C3998 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				BB24BC982BF0EE6B006C3998 /* RoundedButton.swift */,
+				BB17B9252BD45ED8003BE972 /* TextResult.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +173,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB03E1DA2BCF278500FC32FC /* ContentView.swift in Sources */,
+				BB24BC962BF0DF5F006C3998 /* WelcomeView.swift in Sources */,
+				BB24BC992BF0EE6B006C3998 /* RoundedButton.swift in Sources */,
+				BB03E1DA2BCF278500FC32FC /* TicTacToeView.swift in Sources */,
 				BB03E1E62BCFFDD400FC32FC /* ViewModel.swift in Sources */,
 				BB03E1D82BCF278500FC32FC /* TicTacToeNewApp.swift in Sources */,
 				BB17B9262BD45ED8003BE972 /* TextResult.swift in Sources */,

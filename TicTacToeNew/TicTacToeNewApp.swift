@@ -14,7 +14,7 @@ struct TicTacToeNewApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TicTacToeView()
+            WelcomeView()
                 .preferredColorScheme(.dark)
                 .environmentObject(viewVM)
             
