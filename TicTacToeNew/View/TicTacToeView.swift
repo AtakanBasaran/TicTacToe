@@ -11,6 +11,8 @@ import SwiftUI
 struct TicTacToeView: View {
     
     @EnvironmentObject var vm: ViewModel
+    @State private var xScore = 0
+    @State private var oScore = 0
     
     var body: some View {
         
@@ -36,7 +38,7 @@ struct TicTacToeView: View {
                             Image(systemName: "arrowshape.left")
                                 .font(.system(size: 18))
                                 .foregroundStyle(.cyan)
-                                
+                            
                         }
                     })
                     .padding(.leading, 25)
@@ -49,7 +51,7 @@ struct TicTacToeView: View {
                             RoundedRectangle(cornerRadius: 15)
                                 .frame(width: 120, height: 35)
                                 .foregroundStyle(.white)
-                                
+                            
                         )
                         .padding(.trailing, 65)
                     
@@ -57,8 +59,48 @@ struct TicTacToeView: View {
                 }
                 .padding(.top, 15)
                 
-                
+       
                 Spacer()
+                
+                HStack(spacing: 50) {
+                    
+                    HStack {
+                        
+                        Text("X")
+                            .font(.system(size: 22))
+                            .foregroundColor(.red)
+                            .bold()
+                        
+                        Image(systemName: "minus")
+                            .foregroundStyle(.white)
+                        
+                        
+                        Text("\(xScore)")
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                            .bold()
+                        
+                    }
+                    
+                    HStack {
+                        
+                        Text("O")
+                            .font(.system(size: 22))
+                            .foregroundColor(.blue)
+                            .bold()
+                        
+                        
+                        Image(systemName: "minus")
+                            .foregroundStyle(.white)
+                        
+                        Text("\(oScore)")
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                            .bold()
+                        
+                    }
+                }
+                .padding(.bottom, 15)
                 
                 ForEach(0..<3) { row in
                     HStack {
@@ -76,19 +118,22 @@ struct TicTacToeView: View {
                                     .foregroundStyle(vm.board[row][col] == .X || vm.board[row][col] == .XwithOpacity ? .red : .blue)
                                     .opacity(opacity)
                                     .background(Color.black.opacity(0.5))
-                                    
                             })
                         }
                     }
                 }
                 
+                
                 if let winner = vm.winner {
                     ResultView(winner: winner)
                         .padding()
+                        .padding(.bottom, 35)
                 } else {
                     ResultView(winner: vm.winner)
                         .padding()
+                        .padding(.bottom, 35)
                 }
+                
                 
                 
                 if vm.winner != nil {
@@ -106,7 +151,6 @@ struct TicTacToeView: View {
                         
                     })
                     .padding()
-                    .padding(.top, 10)
                 } else {
                     Button(action: {
                         vm.resetGame()
@@ -122,7 +166,6 @@ struct TicTacToeView: View {
                         
                     })
                     .padding()
-                    .padding(.top, 10)
                 }
                 
                 
@@ -133,6 +176,14 @@ struct TicTacToeView: View {
         }
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .navigationBar)
+        .onChange(of: vm.winner) { value in
+            if value == .O || value == .OwithOpacity  {
+                self.oScore += 1
+                
+            } else if value == .X || value == .XwithOpacity {
+                self.xScore += 1
+            }
+        }
         .gesture(
             DragGesture()
                 .onChanged({ value in
@@ -141,7 +192,6 @@ struct TicTacToeView: View {
                         vm.resetGame()
                     }
                 })
-        
         )
         
     }
@@ -152,7 +202,7 @@ struct ResultView: View {
     @State var winner: Player?
     
     var body: some View {
-    
+        
         TextResult(type: $winner)
         
     }

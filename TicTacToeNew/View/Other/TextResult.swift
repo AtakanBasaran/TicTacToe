@@ -44,13 +44,13 @@ struct TextResult: View {
             
             Text("O")
                 .font(.system(size: 22))
-                .foregroundStyle(.blue)
+                .foregroundColor(.blue)
                 .bold()
             
             + Text(" ")
             
             + Text("wins!")
-                .foregroundStyle(.white)
+                .foregroundColor(.white)
                 .font(.system(size: 20))
         }
         
@@ -58,13 +58,13 @@ struct TextResult: View {
             
             Text("X")
                 .font(.system(size: 22))
-                .foregroundStyle(.red)
+                .foregroundColor(.red)
                 .bold()
             
             + Text(" ")
             
             + Text("wins!")
-                .foregroundStyle(.white)
+                .foregroundColor(.white)
                 .font(.system(size: 20))
         }
         
@@ -80,11 +80,11 @@ struct TextResult: View {
             
             Text("\(vm.currentPlayer.symbol)")
                 .font(.system(size: 22))
-                .foregroundStyle(vm.currentPlayer == .X ? .red : .blue)
+                .foregroundColor(vm.currentPlayer == .X ? .red : .blue)
             
             + Text("'s turn")
                 .font(.system(size: 20))
-                .foregroundStyle(.white)
+                .foregroundColor(.white)
             
         }
         

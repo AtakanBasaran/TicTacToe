@@ -18,7 +18,7 @@ struct WelcomeView: View {
             
             ZStack {
                 
-                Color(.cyan)
+                Color.cyan
                     .ignoresSafeArea()
                 
                 VStack {
@@ -27,20 +27,26 @@ struct WelcomeView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 140, height: 120)
+                        .padding(.top, 10)
                         
                     
                     Spacer()
                     
-                    VStack(spacing: 50) {
+                    VStack(spacing: 100) {
                         
-                        Text("Choose your game mode")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 22))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 20)
+                        Image("tic")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .clipShape(.rect(cornerRadius: 15))
+                            .frame(width: 180, height: 220)
+                            
                             
                         
-                        VStack(spacing: 20) {
+                        VStack(alignment: .leading, spacing: 20) {
+                            
+                            Text("Mode")
+                                .foregroundStyle(.gray)
+//                                .underline()
                             
                             Button(action: {
                                 vm.alternativeMode = false
@@ -58,6 +64,7 @@ struct WelcomeView: View {
                             
                         }
                     }
+                    .padding(.bottom, 80)
                     
                     Spacer()
                 }
