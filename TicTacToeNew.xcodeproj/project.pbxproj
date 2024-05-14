@@ -15,6 +15,7 @@
 		BB17B9262BD45ED8003BE972 /* TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17B9252BD45ED8003BE972 /* TextResult.swift */; };
 		BB24BC962BF0DF5F006C3998 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24BC952BF0DF5F006C3998 /* WelcomeView.swift */; };
 		BB24BC992BF0EE6B006C3998 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24BC982BF0EE6B006C3998 /* RoundedButton.swift */; };
+		BB24BC9B2BF3AE97006C3998 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24BC9A2BF3AE97006C3998 /* LaunchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		BB17B9252BD45ED8003BE972 /* TextResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextResult.swift; sourceTree = "<group>"; };
 		BB24BC952BF0DF5F006C3998 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		BB24BC982BF0EE6B006C3998 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		BB24BC9A2BF3AE97006C3998 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				BB24BC982BF0EE6B006C3998 /* RoundedButton.swift */,
 				BB17B9252BD45ED8003BE972 /* TextResult.swift */,
+				BB24BC9A2BF3AE97006C3998 /* LaunchView.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				BB24BC962BF0DF5F006C3998 /* WelcomeView.swift in Sources */,
 				BB24BC992BF0EE6B006C3998 /* RoundedButton.swift in Sources */,
 				BB03E1DA2BCF278500FC32FC /* TicTacToeView.swift in Sources */,
+				BB24BC9B2BF3AE97006C3998 /* LaunchView.swift in Sources */,
 				BB03E1E62BCFFDD400FC32FC /* ViewModel.swift in Sources */,
 				BB03E1D82BCF278500FC32FC /* TicTacToeNewApp.swift in Sources */,
 				BB17B9262BD45ED8003BE972 /* TextResult.swift in Sources */,

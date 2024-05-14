@@ -10,6 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
     
     @EnvironmentObject var vm: ViewModel
+    @State private var launch = true
     
     var body: some View {
         
@@ -60,11 +61,23 @@ struct WelcomeView: View {
                     
                     Spacer()
                 }
+                
+                if launch {
+                    
+                    LaunchView()
+                }
      
             }
             .navigationDestination(isPresented: $vm.navigate) {
                 TicTacToeView()
             }
+            .onAppear(perform: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    withAnimation(.easeInOut) {
+                        self.launch = false
+                    }
+                }
+            })
         }
     }
 }

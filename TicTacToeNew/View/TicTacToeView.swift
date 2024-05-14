@@ -133,7 +133,16 @@ struct TicTacToeView: View {
         }
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .navigationBar)
+        .gesture(
+            DragGesture()
+                .onChanged({ value in
+                    if value.translation.width > 50 {
+                        vm.navigate = false
+                        vm.resetGame()
+                    }
+                })
         
+        )
         
     }
 }
