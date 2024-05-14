@@ -39,6 +39,7 @@ struct TicTacToeView: View {
                                 
                         }
                     })
+                    .padding(.leading, 25)
                     
                     Spacer()
                     
@@ -50,12 +51,12 @@ struct TicTacToeView: View {
                                 .foregroundStyle(.white)
                                 
                         )
-                        .padding(.trailing, 25)
+                        .padding(.trailing, 65)
                     
                     Spacer()
                 }
                 .padding(.top, 15)
-                .padding(.horizontal, 25)
+                
                 
                 Spacer()
                 
@@ -90,22 +91,41 @@ struct TicTacToeView: View {
                 }
                 
                 
-                Button(action: {
-                    vm.resetGame()
-                }, label: {
-                    Text("Play Again")
-                        .foregroundStyle(.white)
-                        .font(.title3)
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundStyle(vm.winnerColor())
-                                .frame(width: 130, height: 35)
-                        )
-                    
-                })
-                .disabled(vm.winner != nil ? false : true)
-                .opacity(vm.winner != nil ? 1 : 0)
-                .padding()
+                if vm.winner != nil {
+                    Button(action: {
+                        vm.resetGame()
+                    }, label: {
+                        Text("Play Again")
+                            .foregroundStyle(.white)
+                            .font(.title3)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .foregroundStyle(vm.winnerColor())
+                                    .frame(width: 130, height: 35)
+                            )
+                        
+                    })
+                    .padding()
+                    .padding(.top, 10)
+                } else {
+                    Button(action: {
+                        vm.resetGame()
+                    }, label: {
+                        Text("Restart")
+                            .foregroundStyle(.cyan)
+                            .font(.title3)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 130, height: 35)
+                            )
+                        
+                    })
+                    .padding()
+                    .padding(.top, 10)
+                }
+                
+                
                 
                 Spacer()
                 
@@ -113,6 +133,7 @@ struct TicTacToeView: View {
         }
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .navigationBar)
+        
         
     }
 }

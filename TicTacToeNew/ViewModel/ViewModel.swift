@@ -86,7 +86,7 @@ class ViewModel: ObservableObject {
     private func checkForWinner() {
         
         // Check rows, columns, and diagonals
-        for i in 0..<3 {
+        for _ in 0..<3 {
             
             func symbolsAreEqual(_ symbol1: Player?, _ symbol2: Player?) -> Bool {
                 // Consider regular symbols and symbols with opacity as equal

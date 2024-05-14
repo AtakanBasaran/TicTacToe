@@ -22,7 +22,7 @@ struct WelcomeView: View {
                 
                 VStack {
                     
-                    Image("XOXr")
+                    Image("xox2")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 140, height: 120)
