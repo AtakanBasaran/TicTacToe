@@ -59,7 +59,7 @@ struct TicTacToeView: View {
                 }
                 .padding(.top, 15)
                 
-       
+                
                 Spacer()
                 
                 HStack(spacing: 50) {
@@ -177,11 +177,14 @@ struct TicTacToeView: View {
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .navigationBar)
         .onChange(of: vm.winner) { value in
+            
             if value == .O || value == .OwithOpacity  {
                 self.oScore += 1
-                
+
+
             } else if value == .X || value == .XwithOpacity {
                 self.xScore += 1
+        
             }
         }
         .gesture(

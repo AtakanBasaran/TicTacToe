@@ -32,14 +32,12 @@ class ViewModel: ObservableObject {
     @Published private(set) var board: [[Player?]] = Array(repeating: Array(repeating: nil, count: 3), count: 3)
     @Published private(set) var currentPlayer: Player = .X
     @Published private(set) var winner: Player? = nil
-    @Published var turnMessage: Text?
     @Published var alternativeMode = false
     @Published var navigate = false
+    @Published var playerMoves: [Player : [(row: Int, col: Int)] ] = [.X: [], .O:[] ]
     
-    private var moveCountX = 0
-    private var moveCountO = 0
-    private var playerMoves: [Player : [(row: Int, col: Int)] ] = [.X: [], .O:[] ]
-    
+    private var timer: Timer?
+
     
     
     func makeMove(row: Int, col: Int) {
@@ -48,21 +46,22 @@ class ViewModel: ObservableObject {
         
         playerMoves[currentPlayer]?.append((row, col))
         board[row][col] = currentPlayer
-        
+        checkForWinner()
         
         if alternativeMode {
             
             if var moves = playerMoves[currentPlayer] {
                 
                 if moves.count == 3 {
+                    
                     if let firstMove = moves.first {
                         board[firstMove.row][firstMove.col] = currentPlayer == .X ? .XwithOpacity : .OwithOpacity
-  
                     } else {
                         print("not fainted")
                     }
                     
                 } else if moves.count == 4 {
+                    
                     if let firstMove = moves.first {
                         moves.removeFirst()
                         playerMoves[currentPlayer] = moves
@@ -71,18 +70,18 @@ class ViewModel: ObservableObject {
                         if let firstMove2 = moves.first {
                             board[firstMove2.row][firstMove2.col] = currentPlayer == .X ? .XwithOpacity : .OwithOpacity
                         }
-
+          
                     }
                 }
+                
             }
         }
-
+        
         currentPlayer = currentPlayer == .X ? .O : .X
         
-        checkForWinner()
     }
     
-
+    
     private func checkForWinner() {
         
         // Check rows, columns, and diagonals
@@ -99,61 +98,224 @@ class ViewModel: ObservableObject {
             
             // Check rows, columns, and diagonals
             for i in 0..<3 {
+                
                 if symbolsAreEqual(board[i][0], board[i][1]) && symbolsAreEqual(board[i][0], board[i][2]) {
                     winner = board[i][0]
+                    
+                    if winner == .O || winner == .OwithOpacity {
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                                withAnimation {
+                                    
+                                    self.board[i][0] = .O
+                                    self.board[i][1] = .O
+                                    self.board[i][2] = .O
+                                    
+                                    withAnimation(.smooth.delay(0.5)) {
+                                        self.board[i][0] = .OwithOpacity
+                                        self.board[i][1] = .OwithOpacity
+                                        self.board[i][2] = .OwithOpacity
+                                    }
+                                }
+                            }
+                            self.timer?.fire()
+                        }
+                        
+                    } else if winner == .X || winner == .XwithOpacity {
+                        
+                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                            withAnimation {
+                                
+                                self.board[i][0] = .X
+                                self.board[i][1] = .X
+                                self.board[i][2] = .X
+                                
+                                withAnimation(.smooth.delay(0.5)) {
+                                    self.board[i][0] = .XwithOpacity
+                                    self.board[i][1] = .XwithOpacity
+                                    self.board[i][2] = .XwithOpacity
+                                }
+                            }
+                        }
+                        timer?.fire()
+                        print("here")
+                        
+                    }
+                    
                     return
                 }
+                
+                
                 if symbolsAreEqual(board[0][i], board[1][i]) && symbolsAreEqual(board[0][i], board[2][i]) {
                     winner = board[0][i]
+                    
+                    if winner == .O || winner == .OwithOpacity {
+                        
+                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                            withAnimation {
+                                
+                                self.board[0][i] = .O
+                                self.board[1][i] = .O
+                                self.board[2][i] = .O
+                                
+                                withAnimation(.smooth.delay(0.5)) {
+                                    self.board[0][i] = .OwithOpacity
+                                    self.board[1][i] = .OwithOpacity
+                                    self.board[2][i] = .OwithOpacity
+                                }
+                            }
+                        }
+                        timer?.fire()
+                        
+                    } else if winner == .X || winner == .XwithOpacity {
+                        
+                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                            withAnimation {
+                                
+                                self.board[0][i] = .X
+                                self.board[1][i] = .X
+                                self.board[2][i] = .X
+                                
+                                withAnimation(.smooth.delay(0.5)) {
+                                    self.board[0][i] = .XwithOpacity
+                                    self.board[1][i] = .XwithOpacity
+                                    self.board[2][i] = .XwithOpacity
+                                }
+                            }
+                        }
+                        timer?.fire()
+                    }
                     return
                 }
+                
             }
+            
             if symbolsAreEqual(board[0][0], board[1][1]) && symbolsAreEqual(board[0][0], board[2][2]) {
                 winner = board[0][0]
+                
+                if winner == .O || winner == .OwithOpacity {
+                    
+                    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                        withAnimation {
+                            
+                            self.board[0][0] = .O
+                            self.board[1][1] = .O
+                            self.board[2][2] = .O
+                            
+                            withAnimation(.smooth.delay(0.5)) {
+                                self.board[0][0] = .OwithOpacity
+                                self.board[1][1] = .OwithOpacity
+                                self.board[2][2] = .OwithOpacity
+                            }
+                        }
+                    }
+                    timer?.fire()
+                    
+                } else if winner == .X || winner == .XwithOpacity {
+                    
+                    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                        withAnimation {
+                            
+                            self.board[0][0] = .X
+                            self.board[1][1] = .X
+                            self.board[2][2] = .X
+                            
+                            withAnimation(.smooth.delay(0.5)) {
+                                self.board[0][0] = .XwithOpacity
+                                self.board[1][1] = .XwithOpacity
+                                self.board[2][2] = .XwithOpacity
+                            }
+                        }
+                    }
+                    timer?.fire()
+                }
+                
                 return
             }
+            
             if symbolsAreEqual(board[0][2], board[1][1]) && symbolsAreEqual(board[0][2], board[2][0]) {
                 winner = board[0][2]
+                
+                if winner == .O || winner == .OwithOpacity {
+                    
+                    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                        withAnimation {
+                            
+                            self.board[0][2] = .O
+                            self.board[1][1] = .O
+                            self.board[2][0] = .O
+                            
+                            withAnimation(.smooth.delay(0.5)) {
+                                self.board[0][2] = .OwithOpacity
+                                self.board[1][1] = .OwithOpacity
+                                self.board[2][0] = .OwithOpacity
+                            }
+                        }
+                    }
+                    timer?.fire()
+                    
+                } else if winner == .X || winner == .XwithOpacity {
+                    
+                    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                        withAnimation {
+                            
+                            self.board[0][2] = .X
+                            self.board[1][1] = .X
+                            self.board[2][0] = .X
+                            
+                            withAnimation(.smooth.delay(0.5)) {
+                                self.board[0][2] = .XwithOpacity
+                                self.board[1][1] = .XwithOpacity
+                                self.board[2][0] = .XwithOpacity
+                            }
+                        }
+                    }
+                    timer?.fire()
+                }
+                
                 return
             }
             
             // Check for draw
             if board.flatMap({ $0 }).compactMap({ $0 }).count == 9 && winner != .X && winner != .O && winner == nil {
-                winner = .Draw // if there is no winner, it's a draw
+                winner = .Draw
             }
         }
     }
+    
+    func resetGame() {
+        winner = nil
+        timer?.invalidate()
+        timer = nil
+        board = Array(repeating: Array(repeating: nil, count: 3), count: 3)
+        playerMoves = [.X: [], .O:[] ]
+        currentPlayer = .X
+    }
+    
+    func winnerColor() -> Color {
         
-        func resetGame() {
-            board = Array(repeating: Array(repeating: nil, count: 3), count: 3)
-            playerMoves = [.X: [], .O:[] ]
-            currentPlayer = .X
-            winner = nil
-        }
-        
-        func winnerColor() -> Color {
+        switch winner {
             
-            switch winner {
-                
-            case .Draw:
-                return .green
-            case .O:
-                return .blue
-                
-            case .X:
-                return .red
-                
-            case .XwithOpacity:
-                return .red
-                
-            case .OwithOpacity:
-                return .blue
-                
-            case .none:
-                return .gray
-            }
+        case .Draw:
+            return .green
+        case .O:
+            return .blue
+            
+        case .X:
+            return .red
+            
+        case .XwithOpacity:
+            return .red
+            
+        case .OwithOpacity:
+            return .blue
+            
+        case .none:
+            return .gray
         }
-        
+    }
+    
     
     
 }
