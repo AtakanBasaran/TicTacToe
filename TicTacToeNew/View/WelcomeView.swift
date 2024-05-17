@@ -35,11 +35,11 @@ struct WelcomeView: View {
                     
                     VStack(spacing: 100) {
                         
-                        Image("tic")
+                        Image("xoxla")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .clipShape(.rect(cornerRadius: 15))
-                            .frame(width: 180, height: 220)
+                            .frame(width: 220, height: 220)
                             
                             
                         
@@ -47,7 +47,6 @@ struct WelcomeView: View {
                             
                             Text("Mode")
                                 .foregroundStyle(.gray)
-//                                .underline()
                             
                             Button(action: {
                                 vm.alternativeMode = false
