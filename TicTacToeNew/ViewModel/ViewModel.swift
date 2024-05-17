@@ -37,7 +37,7 @@ class ViewModel: ObservableObject {
     @Published var playerMoves: [Player : [(row: Int, col: Int)] ] = [.X: [], .O:[] ]
     
     private var timer: Timer?
-
+    
     
     
     func makeMove(row: Int, col: Int) {
@@ -53,86 +53,44 @@ class ViewModel: ObservableObject {
             
             if currentPlayer == .X {
                 
-                if var moves = playerMoves[.O] {
-                    
-                    if moves.count == 3  {
-                        
-                        if let firstMove = moves.first {
-                            board[firstMove.row][firstMove.col] = board[firstMove.row][firstMove.col] == .O ? .OwithOpacity : .OwithOpacity
-                        } else {
-                            print("not fainted")
-                        }
-                        
-                    } /*else if moves.count == 4 {*/
-//                        
-//                        if let firstMove = moves.first {
-//                            moves.removeFirst()
-//                            playerMoves[currentPlayer] = moves
-//                            board[firstMove.row][firstMove.col] = nil
-//                            
-////                            if let firstMove2 = moves.first {
-////                                board[firstMove2.row][firstMove2.col] = board[firstMove.row][firstMove.col] == .O ? .OwithOpacity : .OwithOpacity
-////                            }
-//              
-//                        }
-//                    }
-                    
-                }
-            } else if currentPlayer == .O {
+                applyFaintSymbol(for: .O)
                 
-                if var moves = playerMoves[.X] {
-                    
-                    if moves.count == 3  {
-                        
-                        if let firstMove = moves.first {
-                            board[firstMove.row][firstMove.col] = board[firstMove.row][firstMove.col] == .X ? .XwithOpacity : .XwithOpacity
-                        } else {
-                            print("not fainted")
-                        }
-                        
-                    } /*else if moves.count == 4 {*/
-//                        
-//                        if let firstMove = moves.first {
-//                            moves.removeFirst()
-//                            playerMoves[currentPlayer] = moves
-//                            board[firstMove.row][firstMove.col] = nil
-//                            
-////                            if let firstMove2 = moves.first {
-////                                board[firstMove2.row][firstMove2.col] = board[firstMove.row][firstMove.col] == .O ? .OwithOpacity : .OwithOpacity
-////                            }
-//              
-//                        }
-//                    }
-                    
-                }
+            } else if currentPlayer == .O {
+            
+                applyFaintSymbol(for: .X)
             }
             
-            if var moves = playerMoves[currentPlayer] {
+            if var moves = playerMoves[currentPlayer], moves.count == 4 {
                 
-                if moves.count == 4 {
-                    
-                    if let firstMove = moves.first {
-                        moves.removeFirst()
-                        playerMoves[currentPlayer] = moves
-                        board[firstMove.row][firstMove.col] = nil
-                        
-//                        if let firstMove2 = moves.first {
-//                            board[firstMove2.row][firstMove2.col] = board[firstMove.row][firstMove.col] == .O ? .OwithOpacity : .OwithOpacity
-//                        }
-          
-                    }
+                if let firstMove = moves.first {
+                    moves.removeFirst()
+                    playerMoves[currentPlayer] = moves
+                    board[firstMove.row][firstMove.col] = nil
                 }
             }
         }
+        
         checkForWinner()
         
         if winner == nil {
             currentPlayer = currentPlayer == .X ? .O : .X
         }
-   
+        
     }
     
-
+    private func applyFaintSymbol(for player: Player) {
+        
+        if let moves = playerMoves[player], moves.count == 3 {
+            
+            if let firstMove = moves.first {
+                board[firstMove.row][firstMove.col] = player == .X ? .XwithOpacity : .OwithOpacity
+            } else {
+                print("not fainted")
+            }
+        }
+    }
+    
+    
     private func checkForWinner() {
         
         // Check rows, columns, and diagonals
@@ -158,7 +116,6 @@ class ViewModel: ObservableObject {
                         self.board[i][0] = .O
                         self.board[i][1] = .O
                         self.board[i][2] = .O
-                        
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -363,7 +320,9 @@ class ViewModel: ObservableObject {
             // Check for draw
             if board.flatMap({ $0 }).compactMap({ $0 }).count == 9 && winner != .X && winner != .O && winner == nil {
                 winner = .Draw
+                return
             }
+            
         }
     }
     
