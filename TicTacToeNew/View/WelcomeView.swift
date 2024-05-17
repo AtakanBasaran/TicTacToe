@@ -12,6 +12,7 @@ struct WelcomeView: View {
     @EnvironmentObject var vm: ViewModel
     @State private var launch = true
     
+    
     var body: some View {
         
         NavigationStack {
@@ -53,6 +54,7 @@ struct WelcomeView: View {
                                 vm.navigate = true
                             }, label: {
                                 RoundedButton(text: "Classic", color: .pink)
+                                    
                             })
                             
                             Button(action: {
@@ -79,7 +81,7 @@ struct WelcomeView: View {
                 TicTacToeView()
             }
             .onAppear(perform: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     withAnimation(.easeInOut) {
                         self.launch = false
                     }

@@ -17,10 +17,10 @@ struct LaunchView: View {
             
             VStack {
                 
-                Image("iconW")
+                Image("xoxla")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200, alignment: .center)
+                    .frame(width: 230, height: 230, alignment: .center)
                     .padding(.bottom, 40)
             }
         }

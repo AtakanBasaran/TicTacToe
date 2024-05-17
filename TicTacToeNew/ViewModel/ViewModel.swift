@@ -78,10 +78,9 @@ class ViewModel: ObservableObject {
         }
         
         currentPlayer = currentPlayer == .X ? .O : .X
-        
     }
     
-    
+
     private func checkForWinner() {
         
         // Check rows, columns, and diagonals
@@ -139,7 +138,6 @@ class ViewModel: ObservableObject {
                             }
                         }
                         timer?.fire()
-                        print("here")
                         
                     }
                     
