@@ -106,6 +106,7 @@ struct TicTacToeView: View {
                     HStack {
                         ForEach(0..<3) { col in
                             Button(action: {
+                                vm.hapticFeedback(mode: .soft)
                                 vm.makeMove(row: row, col: col)
                             }, label: {
                                 let symbol = vm.board[row][col]?.symbol ?? ""
@@ -178,12 +179,17 @@ struct TicTacToeView: View {
         .toolbar(.hidden, for: .navigationBar)
         .onChange(of: vm.winner) { value in
             
+            vm.continuousHapticFeedback()
+            
             if value == .O || value == .OwithOpacity  {
-                self.oScore += 1
-
-
+                DispatchQueue.main.async {
+                    self.oScore += 1
+                }
+                
             } else if value == .X || value == .XwithOpacity {
-                self.xScore += 1
+                DispatchQueue.main.async {
+                    self.xScore += 1
+                }
         
             }
         }
