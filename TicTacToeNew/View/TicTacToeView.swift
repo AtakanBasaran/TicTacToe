@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 
 struct TicTacToeView: View {
@@ -13,6 +14,7 @@ struct TicTacToeView: View {
     @EnvironmentObject var vm: ViewModel
     @State private var xScore = 0
     @State private var oScore = 0
+    
     
     var body: some View {
         
@@ -106,8 +108,11 @@ struct TicTacToeView: View {
                     HStack {
                         ForEach(0..<3) { col in
                             Button(action: {
-                                vm.hapticFeedback(mode: .soft)
-                                vm.makeMove(row: row, col: col)
+                                Task {
+                                    vm.makeMove(row: row, col: col)
+                                    HapticManager.shared.hapticFeedback(mode: .soft)
+//                                    SoundManager.shared.playSound()
+                                }
                             }, label: {
                                 let symbol = vm.board[row][col]?.symbol ?? ""
                                 let opacity = vm.board[row][col] == .XwithOpacity || vm.board[row][col] == .OwithOpacity ? 0.4 : 1
@@ -179,7 +184,9 @@ struct TicTacToeView: View {
         .toolbar(.hidden, for: .navigationBar)
         .onChange(of: vm.winner) { value in
             
-            vm.continuousHapticFeedback()
+            if value != nil || value != .Draw {
+                HapticManager.shared.continuousHapticFeedback()
+            }
             
             if value == .O || value == .OwithOpacity  {
                 DispatchQueue.main.async {

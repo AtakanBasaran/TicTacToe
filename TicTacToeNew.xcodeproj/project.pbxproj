@@ -16,6 +16,11 @@
 		BB24BC962BF0DF5F006C3998 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24BC952BF0DF5F006C3998 /* WelcomeView.swift */; };
 		BB24BC992BF0EE6B006C3998 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24BC982BF0EE6B006C3998 /* RoundedButton.swift */; };
 		BB24BC9B2BF3AE97006C3998 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB24BC9A2BF3AE97006C3998 /* LaunchView.swift */; };
+		BB2A7CB42BF92FFC00AE1886 /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BB2A7CB32BF92FFB00AE1886 /* sound.mp3 */; };
+		BB2A7CBA2BF93C3E00AE1886 /* newsound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BB2A7CB92BF93C3E00AE1886 /* newsound.wav */; };
+		BBD219CF2BF9ED76008C7EDF /* shortSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBD219CE2BF9ED76008C7EDF /* shortSound.mp3 */; };
+		BBEF7C662BFB8F5A002FA53F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF7C652BFB8F5A002FA53F /* SoundManager.swift */; };
+		BBEF7C682BFB901D002FA53F /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF7C672BFB901D002FA53F /* HapticManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,11 @@
 		BB24BC952BF0DF5F006C3998 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		BB24BC982BF0EE6B006C3998 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		BB24BC9A2BF3AE97006C3998 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		BB2A7CB32BF92FFB00AE1886 /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
+		BB2A7CB92BF93C3E00AE1886 /* newsound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = newsound.wav; sourceTree = "<group>"; };
+		BBD219CE2BF9ED76008C7EDF /* shortSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shortSound.mp3; sourceTree = "<group>"; };
+		BBEF7C652BFB8F5A002FA53F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		BBEF7C672BFB901D002FA53F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +72,13 @@
 			isa = PBXGroup;
 			children = (
 				BB03E1D72BCF278500FC32FC /* TicTacToeNewApp.swift */,
+				BBEF7C642BFB8F4E002FA53F /* Manager */,
 				BB24BC932BF01F79006C3998 /* ViewModel */,
 				BB24BC942BF01F95006C3998 /* View */,
 				BB03E1DB2BCF278700FC32FC /* Assets.xcassets */,
+				BB2A7CB32BF92FFB00AE1886 /* sound.mp3 */,
+				BBD219CE2BF9ED76008C7EDF /* shortSound.mp3 */,
+				BB2A7CB92BF93C3E00AE1886 /* newsound.wav */,
 				BB03E1DD2BCF278700FC32FC /* Preview Content */,
 			);
 			path = TicTacToeNew;
@@ -104,6 +118,15 @@
 				BB24BC9A2BF3AE97006C3998 /* LaunchView.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		BBEF7C642BFB8F4E002FA53F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				BBEF7C652BFB8F5A002FA53F /* SoundManager.swift */,
+				BBEF7C672BFB901D002FA53F /* HapticManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,8 +187,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD219CF2BF9ED76008C7EDF /* shortSound.mp3 in Resources */,
 				BB03E1DF2BCF278700FC32FC /* Preview Assets.xcassets in Resources */,
 				BB03E1DC2BCF278700FC32FC /* Assets.xcassets in Resources */,
+				BB2A7CB42BF92FFC00AE1886 /* sound.mp3 in Resources */,
+				BB2A7CBA2BF93C3E00AE1886 /* newsound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +202,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBEF7C682BFB901D002FA53F /* HapticManager.swift in Sources */,
 				BB24BC962BF0DF5F006C3998 /* WelcomeView.swift in Sources */,
+				BBEF7C662BFB8F5A002FA53F /* SoundManager.swift in Sources */,
 				BB24BC992BF0EE6B006C3998 /* RoundedButton.swift in Sources */,
 				BB03E1DA2BCF278500FC32FC /* TicTacToeView.swift in Sources */,
 				BB24BC9B2BF3AE97006C3998 /* LaunchView.swift in Sources */,
@@ -319,11 +347,11 @@
 				DEVELOPMENT_TEAM = 27JCDAS664;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = XOX;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -349,11 +377,11 @@
 				DEVELOPMENT_TEAM = 27JCDAS664;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = XOX;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
