@@ -175,7 +175,6 @@ struct TicTacToeView: View {
                 }
                 
                 
-                
                 Spacer()
                 
             }
@@ -185,7 +184,7 @@ struct TicTacToeView: View {
         .onChange(of: vm.winner) { value in
             
             if value != nil || value != .Draw {
-                HapticManager.shared.continuousHapticFeedback()
+                HapticManager.shared.continuousHapticFeedback(start: true)
             }
             
             if value == .O || value == .OwithOpacity  {
@@ -209,6 +208,10 @@ struct TicTacToeView: View {
                     }
                 })
         )
+        
+        .onDisappear {
+            HapticManager.shared.continuousHapticFeedback(start: false)
+        }
         
     }
 }

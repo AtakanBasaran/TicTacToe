@@ -32,9 +32,9 @@ enum Player {
 
 class ViewModel: ObservableObject {
     
-    @Published private(set) var board: [[Player?]] = Array(repeating: Array(repeating: nil, count: 3), count: 3)
-    @Published private(set) var currentPlayer: Player = .X
-    @Published private(set) var winner: Player? = nil
+    @Published var board: [[Player?]] = Array(repeating: Array(repeating: nil, count: 3), count: 3)
+    @Published var currentPlayer: Player = .X
+    @Published var winner: Player? = nil
     @Published var alternativeMode = false
     @Published var navigate = false
     @Published var playerMoves: [Player : [(row: Int, col: Int)] ] = [.X: [], .O:[] ]
@@ -71,6 +71,7 @@ class ViewModel: ObservableObject {
                     board[firstMove.row][firstMove.col] = nil
                 }
             }
+            
         }
         
         checkForWinner()

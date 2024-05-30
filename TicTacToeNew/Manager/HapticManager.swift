@@ -43,18 +43,20 @@ final class HapticManager {
         
     }
     
-    func continuousHapticFeedback() {
+    func continuousHapticFeedback(start: Bool) {
         let duration: Double = 4
         let timeInterval: TimeInterval = 0.1
         
-        DispatchQueue.global().async {
-            
-            let endTime = Date().addingTimeInterval(duration)
-            while Date() < endTime {
-                DispatchQueue.main.async {
-                    self.hapticFeedback(mode: .rigid)
+        if start {
+            DispatchQueue.global().async {
+                
+                let endTime = Date().addingTimeInterval(duration)
+                while Date() < endTime {
+                    DispatchQueue.main.async {
+                        self.hapticFeedback(mode: .rigid)
+                    }
+                    Thread.sleep(forTimeInterval: timeInterval)
                 }
-                Thread.sleep(forTimeInterval: timeInterval)
             }
         }
     }
