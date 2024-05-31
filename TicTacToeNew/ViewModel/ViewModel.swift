@@ -51,17 +51,7 @@ class ViewModel: ObservableObject {
         board[row][col] = currentPlayer
         
         
-        
         if alternativeMode {
-            
-            if currentPlayer == .X {
-                
-                applyFaintSymbol(for: .O)
-                
-            } else if currentPlayer == .O {
-            
-                applyFaintSymbol(for: .X)
-            }
             
             if var moves = playerMoves[currentPlayer], moves.count == 4 {
                 
@@ -72,13 +62,27 @@ class ViewModel: ObservableObject {
                 }
             }
             
+            checkForWinner()
+            
+            if currentPlayer == .X && winner == nil {
+                
+                applyFaintSymbol(for: .O)
+                
+            } else if currentPlayer == .O && winner == nil {
+            
+                applyFaintSymbol(for: .X)
+            }
+            
         }
         
-        checkForWinner()
+        if !alternativeMode {
+            checkForWinner()
+        }
+        
         
         if winner == nil {
             currentPlayer = currentPlayer == .X ? .O : .X
-        }
+        } 
         
     }
     

@@ -33,7 +33,7 @@ final class ViewModelTests: XCTestCase {
     
     func testMakeMove() {
         vm.makeMove(row: 0, col: 0)
-        XCTAssertEqual(vm.board[0][0], .X)
+        XCTAssertEqual(vm.board[0][0], .X)  		
         XCTAssertEqual(vm.currentPlayer, .O)
         XCTAssertEqual(vm.playerMoves[.X]?.count, 1)
     }
