@@ -15,9 +15,9 @@ final class SoundManager {
     private init() {}
     
     private var player: AVAudioPlayer?
+    private let sounds = ["shorted","shorted2","shorted3","shorted4","shorted5","shorted6","shorted7","shorted8"]
     
     var randomSound: String {
-        let sounds = ["shorted","shorted2","shorted3","shorted4","shorted5","shorted6","shorted7","shorted8"]
         return sounds.randomElement() ?? "shorted"
     }
 

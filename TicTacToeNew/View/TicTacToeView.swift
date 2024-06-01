@@ -138,6 +138,7 @@ struct TicTacToeView: View {
                                         SoundManager.shared.playSound(sound: SoundManager.shared.randomSound)
                                     }
                                     vm.makeMove(row: row, col: col)
+                                    HapticManager.shared.runningHaptic = true
                                     HapticManager.shared.hapticFeedback(mode: .soft)
                                 }
                             }, label: {
@@ -207,7 +208,8 @@ struct TicTacToeView: View {
             
             if value != nil || value != .Draw {
                 Task {
-                    HapticManager.shared.continuousHapticFeedback(start: true)
+                    HapticManager.shared.runningHaptic = true
+                    HapticManager.shared.continuousHapticFeedback()
                     if sound == .on && value == .X || value == .O || value == .OwithOpacity || value == .XwithOpacity {
                         SoundManager.shared.playSound(sound: "winning")
                     }
@@ -238,7 +240,7 @@ struct TicTacToeView: View {
         )
         
         .onDisappear {
-            HapticManager.shared.continuousHapticFeedback(start: false)
+            HapticManager.shared.runningHaptic = false
         }
         
     }
