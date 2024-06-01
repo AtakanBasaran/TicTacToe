@@ -47,17 +47,17 @@ final class HapticManager {
         let duration: Double = 4
         let timeInterval: TimeInterval = 0.1
         
-        if start {
-            DispatchQueue.global().async {
-                
-                let endTime = Date().addingTimeInterval(duration)
-                while Date() < endTime {
-                    DispatchQueue.main.async {
-                        self.hapticFeedback(mode: .rigid)
-                    }
-                    Thread.sleep(forTimeInterval: timeInterval)
+        
+        DispatchQueue.global().async {
+            
+            let endTime = Date().addingTimeInterval(duration)
+            while Date() < endTime {
+                DispatchQueue.main.async {
+                    self.hapticFeedback(mode: .rigid)
                 }
+                Thread.sleep(forTimeInterval: timeInterval)
             }
         }
+        
     }
 }

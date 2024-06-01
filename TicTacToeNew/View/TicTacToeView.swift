@@ -9,8 +9,13 @@ import SwiftUI
 import AVFoundation
 
 
+enum SoundActive: String {
+    case off, on
+}
+
 struct TicTacToeView: View {
     
+    @AppStorage("sound") var sound: SoundActive = .on
     @EnvironmentObject var vm: ViewModel
     @State private var xScore = 0
     @State private var oScore = 0
@@ -55,9 +60,29 @@ struct TicTacToeView: View {
                                 .foregroundStyle(.white)
                             
                         )
-                        .padding(.trailing, 65)
+                        
                     
                     Spacer()
+                    
+                    Button {
+                        DispatchQueue.main.async {
+                            (sound == .on) ? (sound = .off) : (sound = .on)
+                        }
+                        
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(.white)
+                                .frame(width: 40)
+                            
+                            Image(systemName: sound == .off ? "speaker.slash" : "speaker.wave.2")
+                                .font(.system(size: 18))
+                                .foregroundStyle(.cyan)
+                            
+                        }
+                    }
+                    .padding(.trailing, 25)
+                    
                 }
                 .padding(.top, 15)
                 
@@ -81,7 +106,6 @@ struct TicTacToeView: View {
                             .font(.system(size: 22))
                             .foregroundColor(.white)
                             .bold()
-                        
                     }
                     
                     HStack {
@@ -109,9 +133,12 @@ struct TicTacToeView: View {
                         ForEach(0..<3) { col in
                             Button(action: {
                                 Task {
+                                    if sound == .on {
+                                        guard vm.board[row][col] == nil && vm.winner == nil else { return }
+                                        SoundManager.shared.playSound(sound: SoundManager.shared.randomSound)
+                                    }
                                     vm.makeMove(row: row, col: col)
                                     HapticManager.shared.hapticFeedback(mode: .soft)
-//                                    SoundManager.shared.playSound()
                                 }
                             }, label: {
                                 let symbol = vm.board[row][col]?.symbol ?? ""
@@ -141,7 +168,6 @@ struct TicTacToeView: View {
                 }
                 
                 
-                
                 if vm.winner != nil {
                     Button(action: {
                         vm.resetGame()
@@ -169,14 +195,10 @@ struct TicTacToeView: View {
                                     .foregroundStyle(.white)
                                     .frame(width: 130, height: 35)
                             )
-                        
                     })
                     .padding()
                 }
-                
-                
                 Spacer()
-                
             }
         }
         .navigationBarBackButtonHidden()
@@ -184,7 +206,13 @@ struct TicTacToeView: View {
         .onChange(of: vm.winner) { value in
             
             if value != nil || value != .Draw {
-                HapticManager.shared.continuousHapticFeedback(start: true)
+                Task {
+                    HapticManager.shared.continuousHapticFeedback(start: true)
+                    if sound == .on && value == .X || value == .O || value == .OwithOpacity || value == .XwithOpacity {
+                        SoundManager.shared.playSound(sound: "winning")
+                    }
+                }
+                
             }
             
             if value == .O || value == .OwithOpacity  {

@@ -15,26 +15,34 @@ final class SoundManager {
     private init() {}
     
     private var player: AVAudioPlayer?
+    
+    var randomSound: String {
+        let sounds = ["shorted","shorted2","shorted3","shorted4","shorted5","shorted6","shorted7","shorted8"]
+        return sounds.randomElement() ?? "shorted"
+    }
 
     
-    func playSound() {
+    func playSound(sound: String) {
         
-        guard let url = Bundle.main.url(forResource: "shortSound", withExtension: ".mp3") else {
+        guard let url = Bundle.main.url(forResource: sound, withExtension: ".mp3") else {
             print("Sound file is not found")
             return
         }
         
-        
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            player?.prepareToPlay()
-            player?.play()
-            
-        } catch {
-            print("Error playing sound")
-            print(error.localizedDescription)
+        DispatchQueue.global().async { [weak self] in
+            do {
+                let audioPlayer = try AVAudioPlayer(contentsOf: url)
+                audioPlayer.prepareToPlay()
+                
+                DispatchQueue.main.async {
+                    self?.player = audioPlayer
+                    self?.player?.play()
+                }
+                
+            } catch {
+                print("Error playing sound")
+                print(error.localizedDescription)
+            }
         }
-        
-        
     }
 }
