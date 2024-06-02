@@ -26,6 +26,7 @@
 		BB6A20532C0A7BC000D26EBC /* shorted5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BB6A20502C0A7BC000D26EBC /* shorted5.mp3 */; };
 		BB6A20542C0A7BC000D26EBC /* shorted6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BB6A20512C0A7BC000D26EBC /* shorted6.mp3 */; };
 		BB6A20562C0A7C0B00D26EBC /* shorted8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BB6A20552C0A7C0B00D26EBC /* shorted8.mp3 */; };
+		BBBBB9792C0B6E540084CF79 /* draw.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBBBB9782C0B6E540084CF79 /* draw.mp3 */; };
 		BBEF7C662BFB8F5A002FA53F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF7C652BFB8F5A002FA53F /* SoundManager.swift */; };
 		BBEF7C682BFB901D002FA53F /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF7C672BFB901D002FA53F /* HapticManager.swift */; };
 		BBFC3CEC2C0A824A0072CF0E /* winning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBFC3CEB2C0A824A0072CF0E /* winning.mp3 */; };
@@ -63,6 +64,8 @@
 		BB6A20502C0A7BC000D26EBC /* shorted5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shorted5.mp3; sourceTree = "<group>"; };
 		BB6A20512C0A7BC000D26EBC /* shorted6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shorted6.mp3; sourceTree = "<group>"; };
 		BB6A20552C0A7C0B00D26EBC /* shorted8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shorted8.mp3; sourceTree = "<group>"; };
+		BBBBB9782C0B6E540084CF79 /* draw.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = draw.mp3; sourceTree = "<group>"; };
+		BBBBB97A2C0CFFA50084CF79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BBEF7C652BFB8F5A002FA53F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		BBEF7C672BFB901D002FA53F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		BBFC3CEB2C0A824A0072CF0E /* winning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winning.mp3; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		BB03E1D62BCF278500FC32FC /* TicTacToeNew */ = {
 			isa = PBXGroup;
 			children = (
+				BBBBB97A2C0CFFA50084CF79 /* Info.plist */,
 				BB03E1D72BCF278500FC32FC /* TicTacToeNewApp.swift */,
 				BBEF7C642BFB8F4E002FA53F /* Manager */,
 				BB24BC932BF01F79006C3998 /* ViewModel */,
@@ -174,6 +178,7 @@
 				BB6A20512C0A7BC000D26EBC /* shorted6.mp3 */,
 				BB6A204F2C0A7BC000D26EBC /* shorted7.mp3 */,
 				BB6A20552C0A7C0B00D26EBC /* shorted8.mp3 */,
+				BBBBB9782C0B6E540084CF79 /* draw.mp3 */,
 				BBFC3CEB2C0A824A0072CF0E /* winning.mp3 */,
 			);
 			path = Sounds;
@@ -277,6 +282,7 @@
 				BB03E1DF2BCF278700FC32FC /* Preview Assets.xcassets in Resources */,
 				BB6A20562C0A7C0B00D26EBC /* shorted8.mp3 in Resources */,
 				BB6A20482C0A78B300D26EBC /* shorted2.mp3 in Resources */,
+				BBBBB9792C0B6E540084CF79 /* draw.mp3 in Resources */,
 				BB6A20462C0A1F6C00D26EBC /* shorted.mp3 in Resources */,
 				BB03E1DC2BCF278700FC32FC /* Assets.xcassets in Resources */,
 				BB6A204E2C0A79F900D26EBC /* shorted4.mp3 in Resources */,
@@ -459,6 +465,7 @@
 				DEVELOPMENT_TEAM = 27JCDAS664;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TicTacToeNew/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = XOX;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -489,6 +496,7 @@
 				DEVELOPMENT_TEAM = 27JCDAS664;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TicTacToeNew/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = XOX;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

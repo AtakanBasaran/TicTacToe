@@ -338,6 +338,8 @@ class ViewModel: ObservableObject {
         winner = nil
         timer?.invalidate()
         timer = nil
+        HapticManager.shared.timer?.cancel()
+        HapticManager.shared.timer = nil
         board = Array(repeating: Array(repeating: nil, count: 3), count: 3)
         playerMoves = [.X: [], .O:[] ]
         currentPlayer = .X

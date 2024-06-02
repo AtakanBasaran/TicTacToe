@@ -60,7 +60,6 @@ struct TicTacToeView: View {
                                 .foregroundStyle(.white)
                             
                         )
-                        
                     
                     Spacer()
                     
@@ -138,7 +137,6 @@ struct TicTacToeView: View {
                                         SoundManager.shared.playSound(sound: SoundManager.shared.randomSound)
                                     }
                                     vm.makeMove(row: row, col: col)
-                                    HapticManager.shared.runningHaptic = true
                                     HapticManager.shared.hapticFeedback(mode: .soft)
                                 }
                             }, label: {
@@ -206,15 +204,18 @@ struct TicTacToeView: View {
         .toolbar(.hidden, for: .navigationBar)
         .onChange(of: vm.winner) { value in
             
-            if value != nil || value != .Draw {
+            if value != nil && value != .Draw {
                 Task {
-                    HapticManager.shared.runningHaptic = true
-                    HapticManager.shared.continuousHapticFeedback()
-                    if sound == .on && value == .X || value == .O || value == .OwithOpacity || value == .XwithOpacity {
+                    HapticManager.shared.startContinuousHapticFeedback()
+                    if sound == .on {
                         SoundManager.shared.playSound(sound: "winning")
                     }
                 }
                 
+            }
+            
+            if value == .Draw && sound == .on {
+                SoundManager.shared.playSound(sound: "draw")
             }
             
             if value == .O || value == .OwithOpacity  {
@@ -239,8 +240,12 @@ struct TicTacToeView: View {
                 })
         )
         
+        .onAppear(perform: {
+            HapticManager.shared.stopContinuousHaptic()
+        })
+        
         .onDisappear {
-            HapticManager.shared.runningHaptic = false
+            HapticManager.shared.stopContinuousHaptic()
         }
         
     }

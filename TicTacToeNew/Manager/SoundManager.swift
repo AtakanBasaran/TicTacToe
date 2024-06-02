@@ -11,13 +11,14 @@ import AVFoundation
 final class SoundManager {
     
     static let shared = SoundManager()
+    private var player: AVAudioPlayer
     
-    private init() {}
-    
-    private var player: AVAudioPlayer?
-    private let sounds = ["shorted","shorted2","shorted3","shorted4","shorted5","shorted6","shorted7","shorted8"]
-    
+    private init() {
+        player = AVAudioPlayer()
+    }
+  
     var randomSound: String {
+        let sounds = ["shorted","shorted2","shorted3","shorted4","shorted5","shorted6","shorted7","shorted8"]
         return sounds.randomElement() ?? "shorted"
     }
 
@@ -30,13 +31,14 @@ final class SoundManager {
         }
         
         DispatchQueue.global().async { [weak self] in
+            
             do {
                 let audioPlayer = try AVAudioPlayer(contentsOf: url)
                 audioPlayer.prepareToPlay()
                 
                 DispatchQueue.main.async {
                     self?.player = audioPlayer
-                    self?.player?.play()
+                    self?.player.play()
                 }
                 
             } catch {
