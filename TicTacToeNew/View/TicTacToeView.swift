@@ -131,14 +131,13 @@ struct TicTacToeView: View {
                     HStack {
                         ForEach(0..<3) { col in
                             Button(action: {
-                                Task {
-                                    if sound == .on {
-                                        guard vm.board[row][col] == nil && vm.winner == nil else { return }
-                                        SoundManager.shared.playSound(sound: SoundManager.shared.randomSound)
-                                    }
-                                    vm.makeMove(row: row, col: col)
-                                    HapticManager.shared.hapticFeedback(mode: .soft)
+                                if sound == .on {
+                                    guard vm.board[row][col] == nil && vm.winner == nil else { return }
+                                    SoundManager.shared.playSound(sound: SoundManager.shared.randomSound)
                                 }
+                                HapticManager.shared.hapticFeedback(mode: .soft)
+                                vm.makeMove(row: row, col: col)
+                                
                             }, label: {
                                 let symbol = vm.board[row][col]?.symbol ?? ""
                                 let opacity = vm.board[row][col] == .XwithOpacity || vm.board[row][col] == .OwithOpacity ? 0.4 : 1
